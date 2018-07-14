@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Vos favoris
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="all_favoris">
+  <ion-list >
+    <button  class="item button" ion-item *ngFor=" let item of fav"  (click)="openNavDetailsPage(item)" icon-start>
+      <ion-card>
+        <img  class="card-img" item-start  src= "{{item.icon}}" />
+        <div class="card-title">{{ item.title }}</div>
+        <div class="card-description">
+          <h4>Ingredients :</h4>
+            <ion-list class="item list1" >
+              <ul><li *ngFor=" let ing of item.ingredients.slice(0,3) ">{{ing.nom}}</li>
+                  <li *ngIf=" item.ingredients.length > 3 ">...</li> 
+              </ul>
+            </ion-list>
+        </div>
+      </ion-card>
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      {{ item.title }}
+    </ion-title>
+    <button #myButton class="button-fav" ion-button   outline color="danger" (click)="toggleIcon()">
+        <ion-icon [name]="buttonIcon"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="recipe">
+<ion-card>
+	<div class="img-recipe">
+  		<img  item-start width="200" height="200" src="{{ item.icon }}"/>
+  	</div>
+    </ion-card>
+    <ion-card>
+  	<div class="ingredients">
+  		<h3>Ingredients : </h3>
+  		<ion-list class="item list1" >
+          <ul><li *ngFor=" let ing of item.ingredients ">{{ing.qt}} de {{ing.nom}} </li></ul>
+        </ion-list>
+  	</div>
+    </ion-card>
+    <ion-card>
+  	<div>
+  		<h3>Recette : </h3>
+  		<ion-list class="item list1" >
+          <ul><li *ngFor=" let rec of item.recipes ">{{rec.method}} </li></ul>
+        </ion-list>
+    </div>
+    </ion-card>
+    <ion-card>
+    <div class="rate">
+    	<h3>Note et commentaires : </h3>
+      <h4>Cette recette a une note de : {{ getAvg(item.notes) }}</h4>
+	    <rating [(ngModel)]="rate" 
+	        readOnly="false"
+	        max="5" 
+	        emptyStarIconName="star-outline" 
+	        halfStarIconName="star-half" 
+	        starIconName="star" 
+	        nullable="false" 
+	        (ngModelChange)="onModelChange($event)">
+
+	    </rating>
+      
+	</div>
+  </ion-card>
+
+</ion-content>
